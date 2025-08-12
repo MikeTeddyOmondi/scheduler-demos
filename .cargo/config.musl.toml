@@ -1,0 +1,9 @@
+[build]
+target = "x86_64-unknown-linux-musl"
+
+[target.x86_64-unknown-linux-musl]
+rustflags = ["-C", "target-feature=+crt-static"]
+
+# Uncomment below if you're on macOS and need cross-compilation to Linux
+# [target.x86_64-unknown-linux-musl]
+# linker = "x86_64-linux-musl-gcc"
