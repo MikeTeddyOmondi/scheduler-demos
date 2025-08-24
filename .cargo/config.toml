@@ -1,1 +1,6 @@
-[build]\ntarget = "x86_64-unknown-linux-musl"\n\n[target.x86_64-unknown-linux-musl]\nrustflags = ["-C", "target-feature=+crt-static"]
+[build]
+target = "x86_64-pc-windows-gnu"
+
+[target.x86_64-pc-windows-gnu]
+linker = "gcc"
+ar = "gcc-ar"
