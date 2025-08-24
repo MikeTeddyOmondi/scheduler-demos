@@ -1,0 +1,19 @@
+# @HOSTNAME = https://locci-scheduler-demo.vercel.app
+@HOSTNAME = http://localhost:3000
+
+### No Data (will send SMS):
+curl -X GET {{HOSTNAME}}/api/handler
+
+### With Query Parameters (will return greeting):
+curl -X GET "{{HOSTNAME}}/api/handler?phone=254717135176&message=hello"
+
+### With JSON Body (will return greeting):
+curl -X POST {{HOSTNAME}}/api/handler \
+  -H "Content-Type: application/json" \
+  -d '{"phone": "254717135176", "message": "Custom message", "sender_id": "UjumbeSMS"}'
+
+### Custom SMS via Body:
+curl -X POST {{HOSTNAME}}/api/handler \
+  -H "Content-Type: application/json" \
+  -d '{"phone": "254717135176", "message": "Scheduled from Locci Scheduler!"}'
+### 

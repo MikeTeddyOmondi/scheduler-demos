@@ -1,10 +1,14 @@
-use vercel_runtime::{run, Body, Error, Request, Response};
+#![allow(unused)]
+use vercel_runtime::{run, Error};
 mod api {
     use http::StatusCode;
     use serde_json::json;
-    pub use vercel_runtime::{run, Body, Error, Request, Response};
+    pub use vercel_runtime::{Body, Error, Request, Response};
 
-    pub async fn handler(_req: Request) -> Result<Response<Body>, Error> {
+    pub async fn handler(req: Request) -> Result<Response<Body>, Error> {
+        let path = req.uri().path();
+        println!("Received request for path: {}", path);
+
         Ok(Response::builder()
             .status(StatusCode::OK)
             .header("Content-Type", "application/json")
@@ -63,10 +67,10 @@ async fn run_local() -> Result<(), Error> {
                 Ok::<_, Infallible>(hyper::Response::from_parts(parts, Full::new(bytes)))
             });
 
-            let exec = tokio::runtime::Handle::current();
-            if let Err(err) = Builder::new(exec).serve_connection(io, service).await {
-                println!("Error serving connection: {:?}", err);
-            }
+            // let exec = tokio::runtime::Handle::current();
+            // if let Err(err) = Builder::new(exec).serve_connection(io, service).await {
+            //     println!("Error serving connection: {:?}", err);
+            // }
         });
     }
 }

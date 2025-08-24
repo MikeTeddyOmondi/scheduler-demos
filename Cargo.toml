@@ -1,6 +1,6 @@
 [package]
 name = "scheduler-demo"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 
 [dependencies]
@@ -12,6 +12,12 @@ hyper-util = { version = "0.1", features = ["tokio", "server"] }
 http-body-util = "0.1"
 tokio-stream = { version = "0.1", features = ["net"] }
 http = "1.0"
+ujumbe_sms = "1.1.0"
+urlencoding = "2.1"
+serde = { version = "1.0.219", features = ["derive"] }
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "json"] }
+uuid = { version = "1.18.0", features = ["v4"] }
 
 [[bin]]
 name = "handler"

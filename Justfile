@@ -115,5 +115,10 @@ watch-test:
     cargo watch -x test
 
 # Watch for changes and run the development server
-watch-dev:
-    cargo watch -qcw ./api -x 'run --bin handler'
+watch-dev: switch-to-local
+    @echo "Starting local development server..."
+    AWS_LAMBDA_FUNCTION_NAME="handler" \
+    AWS_LAMBDA_RUNTIME_API="localhost" \
+    AWS_REGION="local" \
+    RUST_LOG="info" \
+    cargo watch -qcw ./api -s "vercel dev"
